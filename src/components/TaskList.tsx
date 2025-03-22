@@ -15,13 +15,12 @@ interface TaskListProps {
 const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleComplete, taskRemove }) => {
     return (
         <div className="p-3">
-          <h1>Tasks</h1>
-            <div className="list-group">
+                <h1>{tasks.length ? "Tasks..." : "No Tasks yet..."}</h1>
+                <div className="list-group">
                 {tasks.map((task, i) => {
-                    const taskNumber = i + 1;
                     return (
                         <div
-                            key={taskNumber}
+                            key={i}
                             className={
                                 task.completed
                                     ? "list-group-item list-group-item-action bg-success text-white mb-3"
@@ -30,7 +29,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleComplete, taskRemove
                         >
                             <div className="row">
                                 <div className="col-12 col-sm-6 col-md-8">
-                                    <strong>{taskNumber} - Description:</strong> {task.description}
+                                    <strong>{i + 1} - Description:</strong> {task.description}
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-4 text-sm-end pt-4 pt-sm-0">
                                     <b>Deadline:</b> {task.deadline}
@@ -51,7 +50,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleComplete, taskRemove
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="18"
                                         height="18"
-                                        fill={task.completed ? "#ffffff" : "#343a40"}
+                                        fill={task.completed ? "#ffffff" : "green"}
                                         type="button"
                                         className="bi bi-check-square-fill"
                                         viewBox="0 0 16 16"
